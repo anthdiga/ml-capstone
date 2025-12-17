@@ -3,7 +3,7 @@
 ## Overview
 - **Model name:** GP-based Bayesian Optimisation  
 - **Type:** Sequential black-box optimisation framework  
-- **Version:** Iteration 10  
+- **Version:** Iteration 9  
 - **Core components:** Gaussian Process surrogate, Matern kernel (ν = 1.5), Sobol candidate sampling, UCB and EI acquisition functions
 
 ## Intended Use
@@ -18,9 +18,9 @@ It is not suitable for:
 - Highly discontinuous or adversarial objective functions.
 
 ## Approach Details
-Across ten iterations, the optimisation strategy evolved as follows:
+Across nine iterations, the optimisation strategy evolved as follows:
 - Early rounds prioritised exploration using Sobol sampling and higher exploration parameters to discover basic structure.
-- Mid rounds introduced more adaptive acquisition choices, switching between UCB and EI based on observed noise and multimodality.
+- Mid rounds introduced more selective sampling and even using posterior variance (maximum predictive uncertainty) where functions still remained poorly understood.
 - Later rounds increasingly focused on exploitation, refining around best-so-far regions while retaining limited exploration to avoid premature convergence.
 
 Different functions required different balances, reflecting varying dimensionality, noise and landscape complexity.
@@ -42,6 +42,4 @@ Key assumptions include:
 Limitations include sparse coverage in high-dimensional spaces, uncertainty about whether the chosen acquisition function is optimal in every case and reliance on heuristic tuning rather than exhaustive validation.
 
 ## Ethical and Transparency Considerations
-Documenting the optimisation strategy, query history and assumptions improves transparency and reproducibility. While the dataset is synthetic, the approach mirrors real-world decision-making under uncertainty, where documenting limitations is as important as reporting results.
-
-Providing a detailed model card helps others understand how decisions were made, what the approach can and cannot do and how it might be responsibly adapted to new contexts.
+This approach was designed given the synthetic data, so care should be taken when extending it to real-world applications. Nevertheless, the outcomes should be repeatable for any user who can access the BBO challenge datasets.
